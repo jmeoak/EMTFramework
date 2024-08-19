@@ -6,5 +6,4 @@
 
 
 ![EMT Framework Flowchart](EMT_Flowchart.png)
-<img src="https://github.com/jmeoak/EMTFramework/blob/main/EMT_Flowchart.png" width="600">
-https://github.com/jmeoak/EMTFramework/blob/main/EMT_Flowchart.png
+<img src="https://github.com/jmeoak/EMTFramework/blob/main/EMT_Flowchart.png" width="200">
