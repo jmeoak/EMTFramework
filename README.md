@@ -17,3 +17,39 @@ The 4 Jupyter notebook parts can be run in any environment setup to run jupyter.
 - TensorFlow: https://www.tensorflow.org/ (In jupyter execute !pip install tensorflow)
 - VirusTotal API: https://github.com/VirusTotal/vt-py
 - Standard libraries already available in most jupyter environments: joblib, re, matplotlib
+
+
+#### Model Trainer:
+This is the largest of the notebooks in the EMT framework. It is used to train new models for use as the machine learning engine. Examples are shown along with comments on the code. The EMBER training data must be in vectorized form. The https://github.com/elastic/ember has instructions on doing this, and it is recommended to do the vectorization in a command line environment or separate notebook as it only needs to be done once.
+
+#### Model Evaluator:
+This notebook uses the testing samples from the EMBER dataset to evaluate each model and output standard machine learning metrics. It is recommended to be careful of models with extremely high accuracy scores as these have been shown to be overfit to the EMBER dataset for use in modern malware detection.
+#### VirusTotal Integrator:
+This notebook takes in a csv file output by the EMT Framework Main, queries VirusTotal using the SHA256 hash and creates a new csv file including all of the original data in addition to adding the VirusTotal score corresponding to each sample. A VirusTotal API key is needed for this notebook.
+#### Post Processing Module:
+This notebook accepts either the csv file output by the EMT Framework Main or the VirusTotal Integrator and shows accuracy metrics to include normal accuracy and adjusted accuracy using predicted FPR.
+
+### EMT Framework Main:
+The EMT Framework Main runs as a stand-alone python script. It has 2 run modes, normal and advanced. It uses the following folder structure by default where there is one folder at the same level as the python script containing the joblib models and another containing all of the malware samples.
+- EMT_Main.py
+- models/
+- malware/
+
+#### Standard Mode: 
+Provides prompts for each option and runs a single model against 1 or more binaries with the option to save to csv. Designed for use in incident response
+#### Advanced Mode:
+Shown in screenshots below. This mode allows detection of DLLs and can run different models against DLLs in addition to the ability to run multiple models at once. Designed for research use cases.
+
+#### Options Using Advanced Mode:
+#### Model: 
+The ‘all’ options will use every model in the model folder provided. The 4 names included in list shown will run already trained Random Forest, Decision Tree, EMBER Pretrained LightGBM, or Extremely Random Forest. Manual allows a custom name to input corresponding to a new trained model in joblib format.
+#### Cut point: 
+Some models provide a likelihood score between 1 and 0. This number cut point is used in the case of likelihood. 0.9 means the models needs to be 90% confident that the sample is malicious for classification as malware.
+#### Path to malware folder: 
+Custom path of /root/venv/Malware/pentesting/msf/stager used in the screenshot. Auto detection of PE files is done so this can be run against folders containing a mix of PE, doc, pdf, or other types of malware and will only run against PE files.
+#### Name of malware subset:
+This will be the attack/group/tool family. Included as first column of csv document.
+
+#### Run different models against DLLs: 
+This is best when running multiple models as it will ask for a new DLL sub model to run with every loop of a new model. The better option is to use this with execution of a single model.
+
