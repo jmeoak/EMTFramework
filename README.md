@@ -7,7 +7,7 @@
 ## Installation
 The EMT Framework is composed of 5 parts. The Model Trainer, Model Evaluator, EMT Framework Main, VirusTotal Integrator, and Post Processing Module (visualized below) All of the parts are available as Jupyter notebooks except for the EMT Framework Main which is available as a python file. These can be downloaded at https://github.com/jmeoak/EMTFramework
 
-<img src="https://github.com/jmeoak/EMTFramework/blob/main/EMT_Flowchart.png" width="400">
+<img src="https://github.com/jmeoak/EMTFramework/blob/main/EMT_Flowchart.png" width="350">
 
 
 ### Jupyter:
